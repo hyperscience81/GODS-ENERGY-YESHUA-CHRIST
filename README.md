@@ -1,3 +1,42 @@
+name: Verify Blueprint Integrity
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate_syntax:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Verify Core Script Execution
+      run: |
+        python3 main.py
+# Pydroid 3 Environment Runtime Filters
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Local Testing Runtime Logs
+*.log
+*.tmp
+.DS_Store
+
+# State Snapshot Buffers
+*.json.tmp
+manifest_snapshot.txt
 # GODS-ENERGY-YESHUA-CHRIST
 Tesla coil ANTENNA ENERGY AND STORAGE
 # 1. Initialize local repository configuration boundaries
